@@ -1,4 +1,4 @@
-import { getBugUrl } from '../../helpers/urlHelper';
+import { getBugUrl, getLogViewerUrl } from '../../helpers/urlHelper';
 
 treeherder.factory('thStringOverlap', function () {
     return function (str1, str2) {
@@ -126,8 +126,8 @@ treeherder.component('thStaticClassificationOption', {
  */
 treeherder.controller('ThClassificationOptionController', [
     '$scope', '$uibModal', 'thPinboard', 'thUrl',
-    'thReftestStatus',
-    function ($scope, $uibModal, thPinboard, thUrl, thReftestStatus) {
+    'thReftestStatus', '$rootScope',
+    function ($scope, $uibModal, thPinboard, thUrl, thReftestStatus, $rootScope) {
         var ctrl = this;
 
         $scope.getBugUrl = getBugUrl;
@@ -168,7 +168,7 @@ treeherder.controller('ThClassificationOptionController', [
                     summary: () => ctrl.errorLine.data.bug_suggestions.search,
                     search_terms: () => ctrl.errorLine.data.bug_suggestions.search_terms,
                     fullLog: () => logUrl,
-                    parsedLog: () => location.origin + "/" + thUrl.getLogViewerUrl(ctrl.thJob.id),
+                    parsedLog: () => location.origin + "/" + getLogViewerUrl(ctrl.thJob.id, $rootScope.repoName),
                     reftest: () => (thReftestStatus(ctrl.thJob) ? reftestUrlRoot + logUrl + "&only_show_unexpected=1" : ""),
                     selectedJob: () => ctrl.thJob,
                     allFailures: () => [ctrl.errorLine.data.bug_suggestions.search.split(" | ")],
@@ -240,7 +240,7 @@ treeherder.controller('ThErrorLineController', [
          */
         function build() {
             line = $scope.line = ctrl.errorLine;
-            $scope.logUrl = thUrl.getLogViewerUrl(ctrl.thJob.id, line.data.line_number + 1);
+            $scope.logUrl = getLogViewerUrl(ctrl.thJob.id, $rootScope.repoName, line.data.line_number + 1);
             if (!line.verified) {
                 $scope.options = getOptions();
                 $scope.extraOptions = getExtraOptions($scope.options);
@@ -1048,7 +1048,7 @@ treeherder.controller('ThAutoclassifyPanelController', [
             if (selected.length) {
                 var lineNumber = selected[0].data.line_number + 1;
             }
-            window.open(thUrl.getLogViewerUrl(ctrl.thJob.id, lineNumber));
+            window.open(getLogViewerUrl(ctrl.thJob.id, $rootScope.repoName, lineNumber));
         };
 
         function setEditable(lineIds, editable) {

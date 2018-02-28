@@ -25,13 +25,6 @@ treeherder.factory('thUrl', [
                     return result + k + '=' + v;
                 }, "");
             },
-            getLogViewerUrl: function (job_id, line_number) {
-                var rv = "logviewer.html#?job_id=" + job_id + "&repo=" + $rootScope.repoName;
-                if (line_number) {
-                    rv += "&lineNumber=" + line_number;
-                }
-                return rv;
-            },
         };
         return thUrl;
 
