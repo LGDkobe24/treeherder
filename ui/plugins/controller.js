@@ -12,7 +12,7 @@ treeherder.controller('PluginCtrl', [
     '$q', 'thPinboard',
     'ThJobDetailModel', 'thBuildApi', 'thNotify', 'ThJobLogUrlModel', 'ThModelErrors', 'ThTaskclusterErrors',
     'thTabs', '$timeout', 'thReftestStatus', 'ThResultSetStore',
-    'PhSeries', 'thServiceDomain', 'tcactions',
+    'PhSeries', 'tcactions',
     function PluginCtrl(
         $scope, $rootScope, $location, $http, $interpolate, $uibModal,
         thUrl, ThJobClassificationModel,
@@ -21,7 +21,7 @@ treeherder.controller('PluginCtrl', [
         $q, thPinboard,
         ThJobDetailModel, thBuildApi, thNotify, ThJobLogUrlModel, ThModelErrors, ThTaskclusterErrors, thTabs,
         $timeout, thReftestStatus, ThResultSetStore, PhSeries,
-        thServiceDomain, tcactions) {
+        tcactions) {
 
         $scope.job = {};
         $scope.revisionList = [];
@@ -204,7 +204,7 @@ treeherder.controller('PluginCtrl', [
                                 series: seriesList.find(s => d.signature_id === s.id),
                                 ...d
                             })).filter(d => !d.series.parentSignature).map(d => ({
-                                url: `${thServiceDomain}/perf.html#/graphs?series=` +
+                                url: `${SERVICE_DOMAIN}/perf.html#/graphs?series=` +
                                 [$scope.repoName, d.signature_id, 1, d.series.frameworkId] +
                                 '&selected=' +
                                 [$scope.repoName, d.signature_id, $scope.job.result_set_id, d.id],
