@@ -1,13 +1,15 @@
+import { getInspectTaskUrl } from "../../helpers/urlHelper";
+
 logViewerApp.controller('LogviewerCtrl', [
     '$location', '$window', '$document', '$rootScope', '$scope',
     '$timeout', 'ThTextLogStepModel', 'ThJobDetailModel',
     'ThJobModel', 'thNotify', 'dateFilter', 'ThResultSetModel',
-    'thDateFormat', 'thReftestStatus', 'thUrl',
+    'thDateFormat', 'thReftestStatus',
     function Logviewer(
         $location, $window, $document, $rootScope, $scope,
         $timeout, ThTextLogStepModel, ThJobDetailModel,
         ThJobModel, thNotify, dateFilter, ThResultSetModel,
-        thDateFormat, thReftestStatus, thUrl) {
+        thDateFormat, thReftestStatus) {
 
         const query_string = $location.search();
         $scope.css = '';
@@ -100,7 +102,7 @@ logViewerApp.controller('LogviewerCtrl', [
             return start + '-' + end;
         };
 
-        $scope.getInspectTaskUrl = thUrl.getInspectTaskUrl;
+        $scope.getInspectTaskUrl = getInspectTaskUrl;
 
         $scope.init = () => {
             $scope.logProperties = [];

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { getBugUrl, getSlaveHealthUrl } from '../helpers/urlHelper';
+import { getBugUrl, getSlaveHealthUrl, getInspectTaskUrl } from '../helpers/urlHelper';
 
 // using ES6 arrow function syntax throws an error for this particular component
 function ClassificationsPane(props) {
@@ -166,7 +166,7 @@ class JobDetailsList extends React.Component {
                 {this.props.job.taskcluster_metadata &&
                 <JobDetailsListItem
                                 label="Task:" text={this.props.job.taskcluster_metadata.task_id}
-                                href={this.props.getInspectTaskUrl(this.props.job.taskcluster_metadata.task_id)} target="_blank"
+                                href={getInspectTaskUrl(this.props.job.taskcluster_metadata.task_id)} target="_blank"
                 />}
 
                 {this.props.visibleFields &&
@@ -260,7 +260,6 @@ class JobDetailsPane extends React.Component {
                     jobSearchStr={this.props.jobSearchStr}
                     visibleTimeFields={this.props.visibleTimeFields}
                     jobLogUrls={this.props.jobLogUrls}
-                    getInspectTaskUrl={this.props.getInspectTaskUrl}
                     visibleFields={this.props.visibleFields}
                     buildUrl={this.props.buildUrl}
                 />
@@ -283,7 +282,6 @@ JobDetailsPane.propTypes = {
     jobSearchStr: PropTypes.string,
     visibleTimeFields: PropTypes.object,
     jobLogUrls: PropTypes.array,
-    getInspectTaskUrl: PropTypes.func,
     visibleFields: PropTypes.object,
     buildUrl: PropTypes.string,
     classificationTypes: PropTypes.object,
