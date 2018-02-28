@@ -1,3 +1,5 @@
+import { getBugUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('thStringOverlap', function () {
     return function (str1, str2) {
         // Get a measure of the similarity of two strings by a simple process
@@ -91,11 +93,11 @@ treeherder.factory('ThClassificationOption', ['thExtendProperties',
  * Non-editable best option controller
  */
 treeherder.controller('ThStaticClassificationOptionController', [
-    '$scope', 'thPinboard', 'thUrl',
-    function ($scope, thPinboard, thUrl) {
+    '$scope', 'thPinboard',
+    function ($scope, thPinboard) {
         var ctrl = this;
 
-        $scope.getBugUrl = thUrl.getBugUrl;
+        $scope.getBugUrl = getBugUrl;
         $scope.thPinboard = thPinboard;
 
         ctrl.$onChanges = () => {
@@ -128,7 +130,7 @@ treeherder.controller('ThClassificationOptionController', [
     function ($scope, $uibModal, thPinboard, thUrl, thReftestStatus) {
         var ctrl = this;
 
-        $scope.getBugUrl = thUrl.getBugUrl;
+        $scope.getBugUrl = getBugUrl;
         $scope.thPinboard = thPinboard;
 
         ctrl.$onChanges = () => {
@@ -218,7 +220,7 @@ treeherder.controller('ThErrorLineController', [
         var goodMatchScore = 0.75;
         var badMatchScore = 0.25;
 
-        $scope.getBugUrl = thUrl.getBugUrl;
+        $scope.getBugUrl = getBugUrl;
 
         // Show options that are marked as hidden
         $scope.showHidden = false;

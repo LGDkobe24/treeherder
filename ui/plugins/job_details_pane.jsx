@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { getBugUrl } from '../helpers/urlHelper';
 
 // using ES6 arrow function syntax throws an error for this particular component
 function ClassificationsPane(props) {
@@ -22,7 +23,7 @@ function ClassificationsPane(props) {
                 <span title={classificationName.name}><i className={`fa ${iconClass}`} />
                 <span className="ml-1">{classificationName.name}</span></span>
                 {props.bugs.length > 0 &&
-                <a target="_blank" rel="noopener" href={props.getBugUrl(props.bugs[0].bug_id)}
+                <a target="_blank" rel="noopener" href={getBugUrl(props.bugs[0].bug_id)}
                 title={`View bug ${props.bugs[0].bug_id}`}
                 ><em> {props.bugs[0].bug_id}</em></a>}
             </li>
@@ -240,7 +241,6 @@ class JobDetailsPane extends React.Component {
                     job={this.props.job}
                     classifications={this.state.classifications}
                     bugs={this.state.bugs}
-                    getBugUrl={this.props.getBugUrl}
                     dateFilter={dateFilter}
                     linkifyURLsFilter={linkifyURLsFilter}
                     linkifyClassificationsFilter={linkifyClassificationsFilter}
@@ -273,7 +273,6 @@ class JobDetailsPane extends React.Component {
 JobDetailsPane.propTypes = {
     classifications: PropTypes.array,
     bugs: PropTypes.array,
-    getBugUrl: PropTypes.func,
     job: PropTypes.object,
     getSlaveHealthUrl: PropTypes.func,
     getWorkerExplorerUrl: PropTypes.func,

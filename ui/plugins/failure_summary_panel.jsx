@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { getBugUrl } from '../helpers/urlHelper';
 
 class SuggestionsListItem extends React.Component {
     constructor(props) {
@@ -43,7 +44,7 @@ class SuggestionsListItem extends React.Component {
                     {this.props.suggestion.bugs.open_recent.map((bug, index) =>
                         (<BugListItem
                                     key={index} bug={bug} selectedJob={this.props.selectedJob}
-                                    getBugUrl={this.props.getBugUrl} pinboardService={this.props.pinboardService}
+                                    pinboardService={this.props.pinboardService}
                                     escapeHTMLFilter={this.props.escapeHTMLFilter} suggestion={this.props.suggestion}
                                     highlightCommonTermsFilter={this.props.highlightCommonTermsFilter}
                                     $timeout={this.props.$timeout}
@@ -66,7 +67,7 @@ class SuggestionsListItem extends React.Component {
                     {this.props.suggestion.bugs.all_others.map((bug, index) =>
                         (<BugListItem
                                     key={index} bug={bug} selectedJob={this.props.selectedJob}
-                                    getBugUrl={this.props.getBugUrl} pinboardService={this.props.pinboardService}
+                                    pinboardService={this.props.pinboardService}
                                     escapeHTMLFilter={this.props.escapeHTMLFilter} suggestion={this.props.suggestion}
                                     highlightCommonTermsFilter={this.props.highlightCommonTermsFilter}
                                     bugClassName={bug.resolution !== "" ? "deleted" : ""}
@@ -96,7 +97,7 @@ const BugListItem = (props) => {
       $timeout(() => (pinboardService.addBug(bug, selectedJob)));
     };
 
-    const getBugUrl = props.getBugUrl(props.bug.id);
+    const bugUrl = getBugUrl(props.bug.id);
     const bugSummaryText = props.escapeHTMLFilter(props.bug.summary);
     const bugSummaryHTML = { __html: props.highlightCommonTermsFilter(bugSummaryText, props.suggestion.search) };
 
@@ -109,7 +110,7 @@ const BugListItem = (props) => {
                 <i className="fa fa-thumb-tack" />
             </button>
             <a className={`${props.bugClassName} ml-1`}
-               href={getBugUrl}
+               href={bugUrl}
                target="_blank"
                rel="noopener"
                title={props.title}
@@ -154,7 +155,7 @@ class FailureSummaryPanel extends React.Component {
                                     key={index} index={index} suggestion={suggestion} user={this.props.user}
                                     filerInAddress={this.props.filerInAddress} fileBug={this.props.fileBug}
                                     highlightCommonTermsFilter={highlightCommonTermsFilter}
-                                    escapeHTMLFilter={escapeHTMLFilter} getBugUrl={this.props.getBugUrl}
+                                    escapeHTMLFilter={escapeHTMLFilter}
                                     bugLimit={this.props.bugLimit} pinboardService={this.props.pinboardService}
                                     selectedJob={this.props.selectedJob}
                                     $timeout={$timeout}
@@ -209,7 +210,6 @@ FailureSummaryPanel.propTypes = {
     filerInAddress: PropTypes.bool,
     fileBug: PropTypes.func,
     user: PropTypes.object,
-    getBugUrl: PropTypes.func,
     pinboardService: PropTypes.object,
     selectedJob: PropTypes.object,
     $injector: PropTypes.object,
