@@ -1,3 +1,5 @@
+import { getProjectJobUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThTextLogErrorsModel', [
     '$http', '$q', 'thUrl',
     function ($http, $q, thUrl) {
@@ -10,7 +12,7 @@ treeherder.factory('ThTextLogErrorsModel', [
         };
 
         ThTextLogErrorsModel.getUrl = function (job_id) {
-            return thUrl.getProjectJobUrl("/text_log_errors/", job_id);
+            return getProjectJobUrl("/text_log_errors/", job_id);
         };
 
         ThTextLogErrorsModel.getList = function (job_id, config) {

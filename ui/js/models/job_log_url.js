@@ -1,6 +1,8 @@
+import { getProjectUrl } from "../../helpers/urlHelper";
+
 treeherder.factory('ThJobLogUrlModel', [
-    '$http', 'thUrl',
-    function ($http, thUrl) {
+    '$http',
+    function ($http) {
 
         // ThJobLogUrlModel is the js counterpart of job_type
 
@@ -11,7 +13,7 @@ treeherder.factory('ThJobLogUrlModel', [
         };
 
         ThJobLogUrlModel.get_uri = function () {
-            var url = thUrl.getProjectUrl("/job-log-url/");
+            var url = getProjectUrl("/job-log-url/");
             return url;
         };
 

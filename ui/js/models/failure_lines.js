@@ -1,3 +1,5 @@
+import { getProjectJobUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThFailureLinesModel', [
     '$http', '$q', 'thUrl',
     function ($http, $q, thUrl) {
@@ -7,7 +9,7 @@ treeherder.factory('ThFailureLinesModel', [
         };
 
         ThFailureLinesModel.get_url = function (job_id) {
-            return thUrl.getProjectJobUrl("/failure_lines/", job_id);
+            return getProjectJobUrl("/failure_lines/", job_id);
         };
 
         ThFailureLinesModel.get_list = function (job_id, config) {
