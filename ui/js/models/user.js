@@ -1,6 +1,8 @@
+import { getRootUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThUserModel', [
-    '$http', 'thUrl', 'thNotify', '$q',
-    function ($http, thUrl, thNotify, $q) {
+    '$http', 'thNotify', '$q',
+    function ($http, thNotify, $q) {
 
         // ThUserModel is the js counterpart of user
 
@@ -10,7 +12,7 @@ treeherder.factory('ThUserModel', [
             angular.extend(this, data);
         };
 
-        ThUserModel.get_uri = function () { return thUrl.getRootUrl("/user/"); };
+        ThUserModel.get_uri = function () { return getRootUrl("/user/"); };
 
         ThUserModel.get = function () {
             // a static method to retrieve a single instance of ThUserModel

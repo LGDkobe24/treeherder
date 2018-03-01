@@ -1,4 +1,6 @@
+import { getRootUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThBugSuggestionsModel', [
-    '$resource', 'thUrl', function ($resource, thUrl) {
-        return $resource(thUrl.getRootUrl('/project/:project/jobs/:jobId/bug_suggestions/'));
+    '$resource', function ($resource) {
+        return $resource(getRootUrl('/project/:project/jobs/:jobId/bug_suggestions/'));
     }]);

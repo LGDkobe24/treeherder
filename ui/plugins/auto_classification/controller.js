@@ -125,9 +125,9 @@ treeherder.component('thStaticClassificationOption', {
  * Editable option component controller
  */
 treeherder.controller('ThClassificationOptionController', [
-    '$scope', '$uibModal', 'thPinboard', 'thUrl',
+    '$scope', '$uibModal', 'thPinboard',
     'thReftestStatus', '$rootScope',
-    function ($scope, $uibModal, thPinboard, thUrl, thReftestStatus, $rootScope) {
+    function ($scope, $uibModal, thPinboard, thReftestStatus, $rootScope) {
         var ctrl = this;
 
         $scope.getBugUrl = getBugUrl;
@@ -205,10 +205,10 @@ treeherder.component('thClassificationOption', {
  */
 treeherder.controller('ThErrorLineController', [
     '$scope', '$rootScope',
-    'thEvents', 'thUrl',
+    'thEvents',
     'ThClassificationOption', 'thStringOverlap',
     function ($scope, $rootScope,
-              thEvents, thUrl,
+              thEvents,
               ThClassificationOption, thStringOverlap) {
         var ctrl = this;
         var line;
@@ -804,10 +804,10 @@ treeherder.component('thAutoclassifyToolbar', {
 treeherder.controller('ThAutoclassifyPanelController', [
     '$scope', '$rootScope', '$q',
     'thEvents', 'thNotify', 'thJobNavSelectors', 'thPinboard',
-    'thUrl', 'ThMatcherModel', 'ThTextLogErrorsModel', 'ThErrorLineData',
+    'ThMatcherModel', 'ThTextLogErrorsModel', 'ThErrorLineData',
     function ($scope, $rootScope, $q,
              thEvents, thNotify, thJobNavSelectors, thPinboard,
-             thUrl, ThMatcherModel, ThTextLogErrorsModel, ThErrorLineData) {
+             ThMatcherModel, ThTextLogErrorsModel, ThErrorLineData) {
 
         var ctrl = this;
 

@@ -1,8 +1,10 @@
+import { getRootUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThRepositoryModel', [
-    '$http', 'thUrl', '$rootScope', '$interval',
+    '$http', '$rootScope', '$interval',
     '$q', 'treeStatus', 'thRepoGroupOrder',
     function (
-        $http, thUrl, $rootScope, $interval, $q,
+        $http, $rootScope, $interval, $q,
         treeStatus, thRepoGroupOrder) {
 
         var repos = {};
@@ -76,7 +78,7 @@ treeherder.factory('ThRepositoryModel', [
         };
 
         var get_uri = function () {
-            return thUrl.getRootUrl("/repository/");
+            return getRootUrl("/repository/");
         };
 
         var get_list = function () {

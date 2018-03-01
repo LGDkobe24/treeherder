@@ -1,4 +1,6 @@
+import { getRootUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThTextLogStepModel', [
-    '$resource', 'thUrl', function ($resource, thUrl) {
-        return $resource(thUrl.getRootUrl('/project/:project/jobs/:jobId/text_log_steps/'));
+    '$resource', function ($resource) {
+        return $resource(getRootUrl('/project/:project/jobs/:jobId/text_log_steps/'));
     }]);

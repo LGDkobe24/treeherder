@@ -1,8 +1,8 @@
-import { getProjectJobUrl } from '../../helpers/urlHelper';
+import { getProjectJobUrl, getRootUrl } from '../../helpers/urlHelper';
 
 treeherder.factory('ThTextLogErrorsModel', [
-    '$http', '$q', 'thUrl',
-    function ($http, $q, thUrl) {
+    '$http', '$q',
+    function ($http, $q) {
 
         var ThTextLogErrorsModel = function (data) {
             if (data.metadata === null) {
@@ -33,7 +33,7 @@ treeherder.factory('ThTextLogErrorsModel', [
 
         ThTextLogErrorsModel.verify = function (lineId, bestClassification, bugNumber) {
             return $http.put(
-                thUrl.getRootUrl("/text-log-error/" + lineId + "/"), {
+                getRootUrl("/text-log-error/" + lineId + "/"), {
                     best_classification: bestClassification,
                     bug_number: bugNumber
                 });
@@ -43,7 +43,7 @@ treeherder.factory('ThTextLogErrorsModel', [
             if (!data.length) {
                 return $q.resolve();
             }
-            return $http.put(thUrl.getRootUrl("/text-log-error/"), data);
+            return $http.put(getRootUrl("/text-log-error/"), data);
         };
 
         return ThTextLogErrorsModel;

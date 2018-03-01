@@ -1,6 +1,8 @@
+import { getRootUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThBuildPlatformModel', [
-    '$http', 'thUrl',
-    function ($http, thUrl) {
+    '$http',
+    function ($http) {
 
         // ThBuildPlatform is the js counterpart of buildplatform
 
@@ -11,7 +13,7 @@ treeherder.factory('ThBuildPlatformModel', [
         };
 
         ThBuildPlatformModel.get_uri = function () {
-            var url = thUrl.getRootUrl("/buildplatform/");
+            var url = getRootUrl("/buildplatform/");
             return url;
         };
 

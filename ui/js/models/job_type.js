@@ -1,6 +1,8 @@
+import { getRootUrl } from '../../helpers/urlHelper';
+
 treeherder.factory('ThJobTypeModel', [
-    '$http', 'thUrl',
-    function ($http, thUrl) {
+    '$http',
+    function ($http) {
 
         // ThJobTypeModel is the js counterpart of job_type
 
@@ -11,7 +13,7 @@ treeherder.factory('ThJobTypeModel', [
         };
 
         ThJobTypeModel.get_uri = function () {
-            var url = thUrl.getRootUrl("/jobtype/");
+            var url = getRootUrl("/jobtype/");
             return url;
         };
 

@@ -1,16 +1,4 @@
 /* Services */
-treeherder.factory('thUrl', [
-    function () {
-
-        var thUrl = {
-            getRootUrl: function (uri) {
-                return SERVICE_DOMAIN + "/api" + uri;
-            },
-        };
-        return thUrl;
-
-    }]);
-
 treeherder.factory('thNotify', [
     '$timeout', 'localStorageService',
     function ($timeout, localStorageService) {
